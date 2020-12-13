@@ -1,3 +1,5 @@
+import enum
+
 class FrameType(enum.IntEnum):
     type_none = 0
     type_video = 1
@@ -13,3 +15,8 @@ class ColorFormat(enum.IntEnum):
     format_UYVY_BGRA = 1 # No alpha channel: UYVY, Alpha channel: BGRA
     format_RGBX_RGBA = 2 # No alpha channel: RGBX, Alpha channel: RGBA
     format_UYVY_RGBA = 3 # No alpha channel: UYVY, Alpha channel: RGBA
+
+# These are defined in Processing.NDI.structs.h, created with funky bitwise ops
+class FourCC(enum.IntEnum):
+    BGRA = 1095911234
+    RGBA = 1094862674

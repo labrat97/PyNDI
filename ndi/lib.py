@@ -167,12 +167,11 @@ ffi.cdef(r"""
     void NDIlib_recv_free_metadata(NDIlib_recv_instance_t p_instance, const NDIlib_metadata_frame_t* p_metadata);
 
     // Send functions
-    NDIlib_send_instance_t NDIlib_send_create(const NDIlib_send_create_t* p_create_settings NDILIB_CPP_DEFAULT_VALUE(NULL) );
+    NDIlib_send_instance_t NDIlib_send_create(const NDIlib_send_create_t* p_create_settings);
     void NDIlib_send_destroy(NDIlib_send_instance_t p_instance);
     void NDIlib_send_send_video_v2(NDIlib_send_instance_t p_instance, const NDIlib_video_frame_v2_t* p_video_data);
     void NDIlib_send_send_video_async_v2(NDIlib_send_instance_t p_instance, const NDIlib_video_frame_v2_t* p_video_data);
     void NDIlib_send_send_audio_v2(NDIlib_send_instance_t p_instance, const NDIlib_audio_frame_v2_t* p_audio_data);
-    void NDIlib_send_send_audio_v3(NDIlib_send_instance_t p_instance, const NDIlib_audio_frame_v3_t* p_audio_data);
     void NDIlib_send_send_metadata(NDIlib_send_instance_t p_instance, const NDIlib_metadata_frame_t* p_metadata);
     void NDIlib_send_free_metadata(NDIlib_send_instance_t p_instance, const NDIlib_metadata_frame_t* p_metadata);
 
@@ -183,7 +182,7 @@ arch = 'x64' if sys.maxsize > 2**32 else 'x86'
 lib = None
 if platform.system() == 'Windows':
     lib = ffi.dlopen(os.path.join(basedir, "bin", f"Processing.NDI.Lib.{arch}.dll"))
-else if platform.system() == 'Darwin':
+elif platform.system() == 'Darwin':
     lib = ffi.dlopen("/Library/NDI SDK for Apple/lib/x64/libndi.4.dylib")
 
 
