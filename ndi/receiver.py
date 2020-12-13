@@ -1,8 +1,8 @@
 import enum
 import numpy as np
-from lib import lib, ffi
-from finder import NDISource
-import * from defs
+from .lib import lib, ffi
+from .finder import NDISource
+from .defs import *
 
 
 class RecvBandwith(enum.IntEnum):

@@ -1,6 +1,6 @@
 import numpy as np
-from lib import lib, ffi
-from defs import *
+from .lib import lib, ffi
+from .defs import *
 
 
 
