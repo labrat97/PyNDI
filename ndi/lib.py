@@ -184,9 +184,14 @@ if platform.system() == 'Windows':
     lib = ffi.dlopen(os.path.join(basedir, "bin", f"Processing.NDI.Lib.{arch}.dll"))
 elif platform.system() == 'Darwin':
     lib = ffi.dlopen("/Library/NDI SDK for Apple/lib/x64/libndi.4.dylib")
-
+elif platform.system() == 'Linux':
+    if arch == 'x64':
+        arch = 'x86_64'
+    elif arch == 'x86':
+        arch = 'i686'
+    lib = ffi.dlopen(f'/usr/share/ndi/lib/{arch}-linux-gnu/libndi.so')
 
 if not lib or not lib.NDIlib_initialize():
-    print("Failed to initialized NDI")
+    raise RuntimeError("Failed to initialized NDI")
 
 print("NDI Lib initialized")
