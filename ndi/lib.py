@@ -187,13 +187,9 @@ if platform.system() == 'Windows':
 elif platform.system() == 'Darwin':
     libpath = "/Library/NDI SDK for Apple/lib/x64/libndi.4.dylib"
 elif platform.system() == 'Linux':
-    if arch == 'x64':
-        arch = 'x86_64'
-    elif arch == 'x86':
-        arch = 'i686'
-    libpath = f'/usr/share/ndi/lib/{arch}-linux-gnu/libndi.so'
+    libpath = os.path.join(basedir, 'bin', f'libndi.{arch}.so')
 else:
-    raise ImportError(f'The arch \"{arch}\" was not provided in the lib LUT.')
+    raise ImportError(f'The system \"{platform.system()}\" was not provided in the lib LUT.')
 
 # Load the library if available
 lib = ffi.dlopen(libpath)
