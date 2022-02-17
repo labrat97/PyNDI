@@ -177,21 +177,28 @@ ffi.cdef(r"""
 
 """)
 
+# Negotiate loading path
 basedir = os.path.dirname(__file__)
 arch = 'x64' if sys.maxsize > 2**32 else 'x86'
+libpath = None
 lib = None
 if platform.system() == 'Windows':
-    lib = ffi.dlopen(os.path.join(basedir, "bin", f"Processing.NDI.Lib.{arch}.dll"))
+    libpath = os.path.join(basedir, "bin", f"Processing.NDI.Lib.{arch}.dll")
 elif platform.system() == 'Darwin':
-    lib = ffi.dlopen("/Library/NDI SDK for Apple/lib/x64/libndi.4.dylib")
+    libpath = "/Library/NDI SDK for Apple/lib/x64/libndi.4.dylib"
 elif platform.system() == 'Linux':
     if arch == 'x64':
         arch = 'x86_64'
     elif arch == 'x86':
         arch = 'i686'
-    lib = ffi.dlopen(f'/usr/share/ndi/lib/{arch}-linux-gnu/libndi.so')
+    libpath = f'/usr/share/ndi/lib/{arch}-linux-gnu/libndi.so'
+else:
+    raise ImportError(f'The arch \"{arch}\" was not provided in the lib LUT.')
 
+# Load the library if available
+lib = ffi.dlopen(libpath)
+
+# Display what happened
 if not lib or not lib.NDIlib_initialize():
-    raise RuntimeError("Failed to initialized NDI")
-
-print("NDI Lib initialized")
+    raise ImportError(f'Failed to initialized NDI from path \"{libpath}\".')
+print(f'NDI SDK initialized from path {libpath}')
