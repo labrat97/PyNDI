@@ -1,6 +1,6 @@
-import finder
-from sender import *
-from defs import *
+from . import finder
+from .sender import *
+from .defs import *
 import lib
 import cv2
 import imutils

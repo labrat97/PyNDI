@@ -2,9 +2,9 @@
 # Example by Joel Luther-Braun / Github(@Hantoo)
 
 #pyNDI Import
-import finder
-import receiver
-import lib
+from . import finder
+from . import receiver
+from . import lib
 #Other Import
 import cv2
 import imutils
