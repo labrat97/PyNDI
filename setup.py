@@ -1,5 +1,5 @@
 from setuptools import setup
-from . import ndi
+import ndi
 from os import path
 
 try: # for pip >= 10
