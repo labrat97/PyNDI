@@ -10,4 +10,5 @@ from .receiver import create_receiver
 # for typings
 from .finder import NDIFinder, NDISource
 
+__version__:str = '0.1'
 
