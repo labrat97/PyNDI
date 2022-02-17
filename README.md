@@ -14,6 +14,8 @@ The NDI runtime must be installed. Recommended NDI tools to be installed too for
 
 `SimpleSender` creates an NDI source using either the webcam or a generated color-cycling image.
 
+`GUIExample` does... something? I haven't tested it yet. -labrat
+
 
 ### Known Issues
 | Issues                                                            | Resolution                                                  | 
