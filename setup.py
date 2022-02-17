@@ -1,5 +1,6 @@
 from setuptools import setup
 from . import ndi
+from os import path
 
 try: # for pip >= 10
     from pip._internal.req import parse_requirements
@@ -24,5 +25,7 @@ setup(
     author_email='james@nineseven.net',
     url='https://github.com/labrat97/pyNDI',
     packages=['ndi'],
+    package_data={'ndi': [f'ndi{path.sep}bin']},
+    package_dir={'ndi': 'ndi'},
     install_requires=installReqs
 )
