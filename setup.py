@@ -9,7 +9,7 @@ except ImportError: # for pip <= 9.0.3
 
 
 # Open the peripheral files and load into ram
-installReqs = parse_requirements('requirements.txt', session='hack')
+installReqs = [n.requirement for n in parse_requirements('requirements.txt', session='hack')]
 longdesc = None
 with open('./README.md', 'r') as handle:
     longdesc = handle.read()
